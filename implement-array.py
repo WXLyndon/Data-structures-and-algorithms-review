@@ -20,6 +20,7 @@ class MyArray:
     def delete(self, index):
         item = self.data[index]
         self.shiftItems(index)
+        return item
     
     def shiftItems(self, index):
         for i in range(index, self.length-1):
