@@ -60,6 +60,8 @@ class LinkedList:
         self.length += 1
 
     def remove(self, index):
+        if self.length == 0:
+            raise Exception("The linked list is empty, nothing can be removed.")
         if index >= self.length:
             raise IndexError("Input index out of range")
         if index == 0:  # remove the head node
