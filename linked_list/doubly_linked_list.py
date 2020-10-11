@@ -25,7 +25,7 @@ class DoublyLinkedList:
             node = node.next
         return string
 
-    def doubly_linked_string(self):
+    def doubly_linked_backwards_str(self):
         string = ''
         node = self.tail
 
@@ -115,4 +115,4 @@ myLinkedList.insert(3, 4)
 myLinkedList.insert(2, 5)
 myLinkedList.remove(3)
 print(str(myLinkedList))
-print(myLinkedList.doubly_linked_string())
+print(myLinkedList.doubly_linked_backwards_str())
