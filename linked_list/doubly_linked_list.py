@@ -59,6 +59,7 @@ class DoublyLinkedList:
             # in the last loop, current points to the node just before the index node
             current = current.next
         node.next = current.next
+        node.prev = current
         current.next.prev = node
         current.next = node
         self.length += 1
@@ -76,8 +77,10 @@ class DoublyLinkedList:
             elif self.length == 2:
                 self.head = self.head.next
                 self.tail = self.head
+                self.head.prev = None
             else:
                 self.head = self.head.next
+                self.head.prev = None
             self.length -= 1
             return
         current = self.head
@@ -85,19 +88,17 @@ class DoublyLinkedList:
             # in the last loop, current points to the node just before the index node
             current = current.next
         current.next = current.next.next
+        current.next.prev = current
         self.length -= 1
         if current.next == None:
             self.tail = current
-
-    def reverse(self):
-        return NotImplemented
 
 
 myLinkedList = DoublyLinkedList()
 myLinkedList.append(1)
 myLinkedList.append(2)
-# myLinkedList.prepend(9)
-# myLinkedList.insert(3, 4)
-# myLinkedList.insert(2, 5)
-# myLinkedList.remove(3)
+myLinkedList.prepend(9)
+myLinkedList.insert(3, 4)
+myLinkedList.insert(2, 5)
+myLinkedList.remove(3)
 print(str(myLinkedList))
