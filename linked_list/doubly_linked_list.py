@@ -4,6 +4,7 @@ class Node:
     def __init__(self, value):
         self.value = value
         self.next = None
+        self.prev = None
 
 
 class DoublyLinkedList:
@@ -31,12 +32,14 @@ class DoublyLinkedList:
             self.tail = node
         else:  # not empty
             self.tail.next = node
+            node.prev = self.tail
             self.tail = node
         self.length += 1
 
     def prepend(self, value):
         node = Node(value)
         node.next = self.head
+        self.head.prev = node
         self.head = node
         self.length += 1
 
@@ -56,8 +59,10 @@ class DoublyLinkedList:
             # in the last loop, current points to the node just before the index node
             current = current.next
         node.next = current.next
+        current.next.prev = node
         current.next = node
         self.length += 1
+
 
     def remove(self, index):
         if self.length == 0:
@@ -90,8 +95,9 @@ class DoublyLinkedList:
 
 myLinkedList = DoublyLinkedList()
 myLinkedList.append(1)
-myLinkedList.prepend(9)
-myLinkedList.insert(3, 4)
-myLinkedList.insert(2, 5)
-myLinkedList.remove(3)
+myLinkedList.append(2)
+# myLinkedList.prepend(9)
+# myLinkedList.insert(3, 4)
+# myLinkedList.insert(2, 5)
+# myLinkedList.remove(3)
 print(str(myLinkedList))
