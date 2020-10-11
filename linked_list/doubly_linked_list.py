@@ -25,6 +25,19 @@ class DoublyLinkedList:
             node = node.next
         return string
 
+    def doubly_linked_string(self):
+        string = ''
+        node = self.tail
+
+        while node is not None:
+            if node.prev is not None:
+                string += str(node.value) + '-->'
+            else:
+                string += str(node.value)
+            node = node.prev
+        return string
+
+
     def append(self, value):
         node = Node(value)
         if self.head == None:  # empty linked list
@@ -102,3 +115,4 @@ myLinkedList.insert(3, 4)
 myLinkedList.insert(2, 5)
 myLinkedList.remove(3)
 print(str(myLinkedList))
+print(myLinkedList.doubly_linked_string())
