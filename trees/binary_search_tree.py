@@ -33,18 +33,20 @@ class BST:
                 return
 
     def lookup(self, value):
+        if self.root == None:
+            return False
         current = self.root
         while current != None:
             if value < current.value:  # node shoude be in the left child of current
                 if current.left:
                     current = current.left
                     continue
-                return None  # not found
+                return False  # not found
             elif value > current.value:  # node shoude be in the right child of current
                 if current.right:
                     current = current.right
                     continue
-                return None  # not found
+                return False  # not found
             else:  # found
                 return value
 
