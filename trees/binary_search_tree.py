@@ -11,7 +11,21 @@ class BST:
         self.root = None
 
     def insert(self,value):
-        return NotImplemented
+        node = BSTNode(value)
+        current = self.root
+        while current != None:
+            if value <= current.value:
+                if current.left:
+                    current = current.left
+                    continue
+                current.left = node
+                break
+            else:
+                if current.right:
+                    current = current.right
+                    continue
+                current.right = node
+                break
 
     def lookup(self, value):
         return NotImplemented
@@ -32,4 +46,8 @@ class BST:
 
 bst = BST()
 bst.root = BSTNode(1)
+bst.insert(2)
+bst.insert(0)
+bst.insert(8)
+bst.insert(4)
 bst.printTree()
