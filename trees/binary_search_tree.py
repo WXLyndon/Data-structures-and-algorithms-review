@@ -1,4 +1,6 @@
 import json
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -10,17 +12,17 @@ class BST:
     def __init__(self):
         self.root = None
 
-    def insert(self,value):
+    def insert(self, value):
         node = BSTNode(value)
         current = self.root
         while current != None:
-            if value <= current.value:
+            if value <= current.value:  # node shoude be inserted in the left child of current
                 if current.left:
                     current = current.left
                     continue
                 current.left = node
                 break
-            else:
+            else:  # node shoude be inserted in the right child of current
                 if current.right:
                     current = current.right
                     continue
@@ -28,7 +30,20 @@ class BST:
                 break
 
     def lookup(self, value):
-        return NotImplemented
+        current = self.root
+        while current != None:
+            if value < current.value:  # node shoude be in the left child of current
+                if current.left:
+                    current = current.left
+                    continue
+                return None  # not found
+            elif value > current.value:  # node shoude be in the right child of current
+                if current.right:
+                    current = current.right
+                    continue
+                return None  # not found
+            else:  # found
+                return value
 
     def remove(self, value):
         return NotImplemented
@@ -36,7 +51,7 @@ class BST:
     def printTree(self):
         if self.root != None:
             self.inorderPrintTree(self.root)
-    
+
     def inorderPrintTree(self, node):
         if node != None:
             self.inorderPrintTree(node.left)
@@ -51,3 +66,4 @@ bst.insert(0)
 bst.insert(8)
 bst.insert(4)
 bst.printTree()
+print(bst.lookup(8))
