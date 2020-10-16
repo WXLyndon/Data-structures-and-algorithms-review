@@ -69,7 +69,7 @@ class BST:
                         self.root = current_node.left
                         return
                     else:
-                        if parent_node.value > current_node.value:
+                        if parent_node.value >= current_node.value:
                             parent_node.left = current_node.left
                             return
                         else:
@@ -82,7 +82,7 @@ class BST:
                         self.root = current_node.right
                         return
                     else:
-                        if parent_node.value > current_node.value:
+                        if parent_node.value >= current_node.value:
                             parent_node.left = current_node.right
                             return
                         else:
@@ -94,7 +94,7 @@ class BST:
                     if parent_node == None: #Node to be deleted is root
                         current_node = None
                         return
-                    if parent_node.value > current_node.value:
+                    if parent_node.value >= current_node.value:
                         parent_node.left = None
                         return
                     else:
