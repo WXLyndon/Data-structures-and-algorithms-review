@@ -12,7 +12,7 @@ class MaxHeap:
         self.heap[0] = sys.maxsize
         self.front = 1
 
-    def print_heap(self):
+    def printHeap(self):
         for i in range(1, (self.size // 2) + 1):
             heapString = "PARENT: "
             heapString += str(self.heap[i]) + ", "
@@ -23,24 +23,24 @@ class MaxHeap:
     def parent(self, index):
         return index // 2
 
-    def left_child(self, index):
+    def leftChild(self, index):
         return 2 * index
 
-    def right_child(self, index):
+    def rightChild(self, index):
         return (2 * index) + 1
 
-    def is_leaf(self, index):
+    def isLeaf(self, index):
         return (index > self.size // 2) and index <= self.size
 
     def swap(self, first, second):
         self.heap[first], self.heap[second] = self.heap[second], self.heap[first]
 
-    def max_heapify(self, index):
+    def maxHeapify(self, index):
 
         # if the node is a non-leaf node
-        if not self.is_leaf(index):
-            left_index = self.left_child(index)
-            right_index = self.right_child(index)
+        if not self.isLeaf(index):
+            left_index = self.leftChild(index)
+            right_index = self.rightChild(index)
 
             # if the node is smaller than any of its child
             if (self.heap[index] < self.heap[left_index]) or (self.heap[index] < self.heap[right_index]):
@@ -50,13 +50,13 @@ class MaxHeap:
                     # swap the node and its left child.
                     self.swap(index, left_index)
                     # max heapify the left child.
-                    self.max_heapify(left_index)
+                    self.maxHeapify(left_index)
 
                 # Right child is bigger than or equal to right child.
                 else:
                     self.swap(index, right_index)
                     # max heapify the left child.
-                    self.max_heapify(right_index)
+                    self.maxHeapify(right_index)
 
     def insert(self, value):
         if self.size >= self.maxsize:
@@ -75,7 +75,7 @@ class MaxHeap:
         self.heap[self.front] = self.heap[self.size]
         self.heap[self.size] = 0
         self.size -= 1
-        self.max_heapify(self.front)
+        self.maxHeapify(self.front)
         return popElement
 
 
@@ -89,11 +89,11 @@ maxHeap.insert(5)
 maxHeap.insert(100)
 maxHeap.insert(70)
 maxHeap.insert(4)
-maxHeap.print_heap()
+maxHeap.printHeap()
 print(str(maxHeap.heap))
 print(maxHeap.extract_max())
 print(str(maxHeap.heap))
-maxHeap.print_heap()
+maxHeap.printHeap()
 print(maxHeap.extract_max())
 print(str(maxHeap.heap))
-maxHeap.print_heap()
+maxHeap.printHeap()
