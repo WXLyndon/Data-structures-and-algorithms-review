@@ -18,8 +18,8 @@ def merge(left, right):
         else:
             result.append(right[r])
             r += 1
-    result += list(left[l:])
-    result += list(right[r:])
+    result += left[l:]
+    result += right[r:]
     return result
 
 
