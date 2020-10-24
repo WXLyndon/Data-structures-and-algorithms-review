@@ -12,7 +12,7 @@ def quickSort(array, left, right):
 
 
 def partition(array, left, right):
-    i = left - 1
+    i = left - 1 # To track the index of the rightmost element that less than or equal to the pivot.
     for j in range(left, right):
         if array[j] <= array[right]:
             i += 1
