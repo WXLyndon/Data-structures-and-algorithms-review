@@ -52,19 +52,19 @@ class BST:
 
     # https://repl.it/@aneagoie/Data-Structures-Trees#main.js
     def remove(self, value):
-        if self.root == None: #Tree is empty
+        if self.root == None:  # Tree is empty
             return "Tree Is Empty"
         current_node = self.root
         parent_node = None
-        while current_node!=None: #Traversing the tree to reach the desired node or the end of the tree
+        while current_node != None:  # Traversing the tree to reach the desired node or the end of the tree
             if current_node.value > value:
                 parent_node = current_node
                 current_node = current_node.left
             elif current_node.value < value:
                 parent_node = current_node
                 current_node = current_node.right
-            else: #Match is found. Different cases to be checked
-                #Node has left child only
+            else:  # Match is found. Different cases to be checked
+                # Node has left child only
                 if current_node.right == None:
                     if parent_node == None:
                         self.root = current_node.left
@@ -77,7 +77,7 @@ class BST:
                             parent_node.right = current_node.left
                             return
 
-                #Node has right child only
+                # Node has right child only
                 elif current_node.left == None:
                     if parent_node == None:
                         self.root = current_node.right
@@ -90,9 +90,9 @@ class BST:
                             parent_node.right = current_node.right
                             return
 
-                #Node has neither left nor right child
+                # Node has neither left nor right child
                 elif current_node.left == None and current_node.right == None:
-                    if parent_node == None: #Node to be deleted is root
+                    if parent_node == None:  # Node to be deleted is root
                         current_node = None
                         return
                     if parent_node.value >= current_node.value:
@@ -102,21 +102,21 @@ class BST:
                         parent_node.right = None
                         return
 
-                #Node has both left and right child
+                # Node has both left and right child
                 elif current_node.left != None and current_node.right != None:
                     del_node = current_node.right
                     del_node_parent = current_node.right
-                    while del_node.left != None: #Loop to reach the leftmost node of the right subtree of the current node
+                    while del_node.left != None:  # Loop to reach the leftmost node of the right subtree of the current node
                         del_node_parent = del_node
                         del_node = del_node.left
-                    current_node.value = del_node.value #The value to be replaced is copied
-                    if del_node == del_node_parent: #If the node to be deleted is the exact right child of the current node
+                    current_node.value = del_node.value  # The value to be replaced is copied
+                    if del_node == del_node_parent:  # If the node to be deleted is the exact right child of the current node
                         current_node.right = del_node.right
                         return
-                    if del_node.right == None: #If the leftmost node of the right subtree of the current node has no right subtree
+                    if del_node.right == None:  # If the leftmost node of the right subtree of the current node has no right subtree
                         del_node_parent.left = None
                         return
-                    else: #If it has a right subtree, we simply link it to the parent of the del_node
+                    else:  # If it has a right subtree, we simply link it to the parent of the del_node
                         del_node_parent.left = del_node.right
                         return
         return "Not Found"
@@ -144,9 +144,20 @@ class BST:
                 queue.append(current.left)
             if current.right != None:
                 queue.append(current.right)
-        
+
         return list
 
+    def bfsRecursive(self, queue, list):
+        if (len(queue) == 0):
+            return list
+        current = queue.pop(0)
+        list.append(current.value)
+        if current.left != None:
+            queue.append(current.left)
+        if current.right != None:
+            queue.append(current.right)
+
+        return self.bfsRecursive(queue, list)
 
 
 bst = BST()
@@ -159,3 +170,4 @@ bst.insert(15)
 bst.insert(1)
 bst.printTree()
 print(bst.bfs())
+print(bst.bfsRecursive([bst.root], []))
