@@ -21,7 +21,7 @@ def heapSort(array):
         maxHeapify(array, size, i)
 
     for i in range(size-1, 0, -1):
-        array[i], array[0] = array[0], array[i]
+        array[i], array[0] = array[0], array[i] # array[0] is the maximum in the current loop
         maxHeapify(array, i, 0)
 
 
