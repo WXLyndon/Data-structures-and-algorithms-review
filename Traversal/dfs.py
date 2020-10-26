@@ -122,17 +122,17 @@ class BST:
         return "Not Found"
 
     def printTree(self):
-        if self.root != None:
+        if self.root:
             self.inorderPrintTree(self.root)
 
     def inorderPrintTree(self, node):
-        if node != None:
+        if node:
             self.inorderPrintTree(node.left)
             print(node.value)
             self.inorderPrintTree(node.right)
 
     def DFSInorder(self, node, list):
-        if node != None:
+        if node:
             self.DFSInorder(node.left, list)
             list.append(node.value)
             self.DFSInorder(node.right, list)
@@ -140,14 +140,14 @@ class BST:
 
 
     def DFSPreorder(self, node, list):
-        if node != None:
+        if node:
             list.append(node.value)
             self.DFSPreorder(node.left, list)
             self.DFSPreorder(node.right, list)
         return list
     
     def DFSPostorder(self, node, list):
-        if node != None:
+        if node:
             self.DFSPostorder(node.left, list)
             self.DFSPostorder(node.right, list)
             list.append(node.value)
